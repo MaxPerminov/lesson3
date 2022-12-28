@@ -1,0 +1,22 @@
+{
+  "name": "lesson3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxPerminov/lesson3.git"
+  },
+  "author": "Max",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxPerminov/lesson3/issues"
+  },
+  "homepage": "https://github.com/MaxPerminov/lesson3#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
