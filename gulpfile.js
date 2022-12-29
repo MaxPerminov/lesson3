@@ -30,7 +30,7 @@ function piping_js () {
   .pipe(babel({presets:["@babel/env"]})) //presets - changing files view according to preset
   .pipe(uglify()) // minimalize code
   .pipe(concat("index.js"))//making main file
-  .pipe(dest("dest_dir"))// sending the copy of working data to specified path
+  .pipe(dest("dest_dir"))// sending the stream of working data to specified path
 }
 exports.default = piping_js;
                       // run in order(by commenting unrunable)1:piping_html,2: piping_js:1 - scr, dest;2 - babel and uglify;3 - concat
