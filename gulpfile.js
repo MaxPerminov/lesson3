@@ -3,7 +3,7 @@
 //     cb(console.log("All right"));
 //   }  
 //   exports.default = defaultTask
-                                         //to run: enter gulp
+                                              //to run: enter gulp
 // ----------------------------------------------------------
 // const { series, parallel } = require ("gulp"); //imports
 // async function test () {
@@ -21,16 +21,23 @@
 const { src, dest } = require("gulp");
 const babel = require("gulp-babel"); 
 const  concat = require("gulp-concat"); 
-var uglify = require("gulp-uglify"); 
+var uglify = require("gulp-uglify");
+var clean = require("gulp-clean");
 function piping_html () {
-  return src("./src/*html").pipe(dest("dest_dir"));
-}
+  return src("./src/*html").pipe(dest("dest_dir"));// scr - sets path to the working data,  
+}                                                 //.pipe - data channel for interprocess communication
 function piping_js () {
-  return src("./src/**/*js") // sets path to the working data
-  .pipe(babel({presets:["@babel/env"]})) //presets - changing files view according to preset
-  .pipe(uglify()) // minimalize code
-  .pipe(concat("index.js"))//making main file
-  .pipe(dest("dest_dir"))// sending the stream of working data to specified path
+  return src("./src/**/*js") 
+  .pipe(babel({presets:["@babel/env"]}))      //presets - changing files view according to preset
+  .pipe(uglify())                            // minimalize code
+  .pipe(concat("index.js"))                 //making main file
+  .pipe(dest("dest_dir"))                  // sending the stream of working data to specified path
 }
-exports.default = piping_js;
-                      // run in order(by commenting unrunable)1:piping_html,2: piping_js:1 - scr, dest;2 - babel and uglify;3 - concat
+function clean_pack () {
+  return src("dest_dir").pipe(clean({force:false}));
+}
+exports.default = piping_js;    //run:gulp
+exports.get_html = piping_html;//run:gulp get_html
+exports.cleaner = clean_pack;//run:gulp cleaner
+                            // run in order(by commenting unrunable)1:get_html,2: piping_js:1 - scr, dest;2 - babel and uglify;3 - concat
+//------------------------------------------------------------------------------------------------------------------------------------------------
